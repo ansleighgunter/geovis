@@ -92,8 +92,8 @@ Use the **Build Website** button in RStudio, or run:
 
 
 ```{r}
-#install.packages(c("rmarkdown","knitr","ggplot2"))  # first time only
-#rmarkdown::render_site()  # builds the site into docs/
+install.packages(c("rmarkdown","knitr","ggplot2"))  # first time only
+rmarkdown::render_site()  # builds the site into docs/
 ```
 
 
