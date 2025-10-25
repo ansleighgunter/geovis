@@ -1,0 +1,19 @@
+name: "my-personal-site"
+title: "Ansleigh Gunter's Personal Site"
+output_dir: "docs"
+navbar:
+  title: "About"
+  left:
+    - text: "About"
+      href: index.html
+    - text: "Analyses"
+      href: analyses.html
+    - text: "Contact"
+      href: contact.html
+output:
+  html_document:
+    toc: true
+    toc_depth: 2
+    toc_float: true
+    theme: flatly
+    css: custom.css

@@ -1,0 +1,59 @@
+---
+title: "Assignment 1: Coding Showcase"
+author: "Ansleigh Gunter"
+output: html_document
+---
+
+```{r setup_assignment, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+```
+
+# Overview
+This is a short analysis demonstrating basic skills: plotting and fitting a simple model.
+
+# Data & methods
+We use the built-in `faithful` dataset from **ggplot2**, which gives data on the Old Faithful eruptions.
+
+```{r}
+library(ggplot2)
+summary(faithful)
+```
+
+# Visualization
+```{r}
+e <- ggplot(faithful, aes(x = eruptions)) +
+  geom_histogram(binwidth = 0.25, fill = "steelblue", color = "black") +
+  labs(
+    title = "Distribution of Old Faithful Eruption Durations",
+    x = "Eruption duration (minutes)",
+    y = "Number of eruptions"
+  ) +
+  theme_minimal()
+e
+```
+
+# Going Further
+There's another version of Old Faithful data that allows for two-dimensional visualization called `faithfuld`. We can use that here to create a density heat map!
+
+```{r}
+ggplot(faithfuld, aes(x = eruptions, y = waiting, fill = density)) +
+  geom_tile() +
+  labs(
+    title = "Old Faithful 2D Density",
+    x = "Eruption duration (minutes)",
+    y = "Waiting time (minutes)"
+  ) +
+  theme_minimal()
+```
+
+# Analysis
+The density heat map shows that there may be some correlation between the waiting time for the eruption and the actual eruption length. To see if this is significant, we can do a quick analysis.
+
+```{r}
+data(faithful)
+m2 <- lm(eruptions ~ waiting, data = faithful)
+summary(m2)
+```
+
+# Reflection
+In the histogram, there is a bimodal distribution of eruption length for Old Faithful. There's shorter eruptions that last around 2 minutes and longer eruptions that last for more than 4, but very few eruptions last for 3 minutes, shorter than 2 minutes, or longer than 5 minutes. The strong positive trend we see in the density heat map is significant. Longer waiting times for eruptions have a strongly positive statistical correlation with a longer eruption time, which we can see from the generated significance codes. During this visualization, it was important to make sure I was using the right data for the type of plot I hoped to make. The two-dimension data doesn't work well for a histogram and the regression analysis also need the simpler version of the Old Faithful data.
