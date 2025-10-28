@@ -2,7 +2,7 @@ name: "my-personal-site"
 title: "Ansleigh Gunter's Personal Site"
 output_dir: "docs"
 navbar:
-  title: "About"
+  title: "My Page"
   left:
     - text: "About"
       href: index.html

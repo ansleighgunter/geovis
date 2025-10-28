@@ -9,10 +9,10 @@
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
-<meta name="author" content="Ansleigh Gunter" />
 
+<meta name="date" content="2025-10-24" />
 
-<title>Assignment 1: Coding Showcase</title>
+<title>mypage</title>
 
 <script src="site_libs/header-attrs-2.30/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -341,101 +341,38 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">Assignment 1: Coding Showcase</h1>
-<h4 class="author">Ansleigh Gunter</h4>
+<h1 class="title toc-ignore">mypage</h1>
+<h4 class="date">2025-10-24</h4>
 
 </div>
 
 
-<div id="overview" class="section level1">
-<h1>Overview</h1>
-<p>This is a short analysis demonstrating basic skills: plotting and
-fitting a simple model.</p>
+<div id="r-markdown" class="section level2">
+<h2>R Markdown</h2>
+<p>This is an R Markdown document. Markdown is a simple formatting
+syntax for authoring HTML, PDF, and MS Word documents. For more details
+on using R Markdown see <a href="http://rmarkdown.rstudio.com"
+class="uri">http://rmarkdown.rstudio.com</a>.</p>
+<p>When you click the <strong>Knit</strong> button a document will be
+generated that includes both content as well as the output of any
+embedded R code chunks within the document. You can embed an R code
+chunk like this:</p>
+<pre class="r"><code>summary(cars)</code></pre>
+<pre><code>##      speed           dist       
+##  Min.   : 4.0   Min.   :  2.00  
+##  1st Qu.:12.0   1st Qu.: 26.00  
+##  Median :15.0   Median : 36.00  
+##  Mean   :15.4   Mean   : 42.98  
+##  3rd Qu.:19.0   3rd Qu.: 56.00  
+##  Max.   :25.0   Max.   :120.00</code></pre>
 </div>
-<div id="data-methods" class="section level1">
-<h1>Data &amp; methods</h1>
-<p>We use the built-in <code>faithful</code> dataset from
-<strong>ggplot2</strong>, which gives data on the Old Faithful
-eruptions.</p>
-<pre class="r"><code>library(ggplot2)
-summary(faithful)</code></pre>
-<pre><code>##    eruptions        waiting    
-##  Min.   :1.600   Min.   :43.0  
-##  1st Qu.:2.163   1st Qu.:58.0  
-##  Median :4.000   Median :76.0  
-##  Mean   :3.488   Mean   :70.9  
-##  3rd Qu.:4.454   3rd Qu.:82.0  
-##  Max.   :5.100   Max.   :96.0</code></pre>
-</div>
-<div id="visualization" class="section level1">
-<h1>Visualization</h1>
-<pre class="r"><code>e &lt;- ggplot(faithful, aes(x = eruptions)) +
-  geom_histogram(binwidth = 0.25, fill = &quot;steelblue&quot;, color = &quot;black&quot;) +
-  labs(
-    title = &quot;Distribution of Old Faithful Eruption Durations&quot;,
-    x = &quot;Eruption duration (minutes)&quot;,
-    y = &quot;Number of eruptions&quot;
-  ) +
-  theme_minimal()
-e</code></pre>
-<p><img src="assignment-1_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
-</div>
-<div id="going-further" class="section level1">
-<h1>Going Further</h1>
-<p>There’s another version of Old Faithful data that allows for
-two-dimensional visualization called <code>faithfuld</code>. We can use
-that here to create a density heat map!</p>
-<pre class="r"><code>ggplot(faithfuld, aes(x = eruptions, y = waiting, fill = density)) +
-  geom_tile() +
-  labs(
-    title = &quot;Old Faithful 2D Density&quot;,
-    x = &quot;Eruption duration (minutes)&quot;,
-    y = &quot;Waiting time (minutes)&quot;
-  ) +
-  theme_minimal()</code></pre>
-<p><img src="assignment-1_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
-</div>
-<div id="analysis" class="section level1">
-<h1>Analysis</h1>
-<p>The density heat map shows that there may be some correlation between
-the waiting time for the eruption and the actual eruption length. To see
-if this is significant, we can do a quick analysis.</p>
-<pre class="r"><code>data(faithful)
-m2 &lt;- lm(eruptions ~ waiting, data = faithful)
-summary(m2)</code></pre>
-<pre><code>## 
-## Call:
-## lm(formula = eruptions ~ waiting, data = faithful)
-## 
-## Residuals:
-##      Min       1Q   Median       3Q      Max 
-## -1.29917 -0.37689  0.03508  0.34909  1.19329 
-## 
-## Coefficients:
-##              Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept) -1.874016   0.160143  -11.70   &lt;2e-16 ***
-## waiting      0.075628   0.002219   34.09   &lt;2e-16 ***
-## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
-## 
-## Residual standard error: 0.4965 on 270 degrees of freedom
-## Multiple R-squared:  0.8115, Adjusted R-squared:  0.8108 
-## F-statistic:  1162 on 1 and 270 DF,  p-value: &lt; 2.2e-16</code></pre>
-</div>
-<div id="reflection" class="section level1">
-<h1>Reflection</h1>
-<p>In the histogram, there is a bimodal distribution of eruption length
-for Old Faithful. There’s shorter eruptions that last around 2 minutes
-and longer eruptions that last for more than 4, but very few eruptions
-last for 3 minutes, shorter than 2 minutes, or longer than 5 minutes.
-The strong positive trend we see in the density heat map is significant.
-Longer waiting times for eruptions have a strongly positive statistical
-correlation with a longer eruption time, which we can see from the
-generated significance codes. During this visualization, it was
-important to make sure I was using the right data for the type of plot I
-hoped to make. The two-dimension data doesn’t work well for a histogram
-and the regression analysis also need the simpler version of the Old
-Faithful data.</p>
+<div id="including-plots" class="section level2">
+<h2>Including Plots</h2>
+<p>You can also embed plots, for example:</p>
+<p><img src="mypage_files/figure-html/pressure-1.png" width="672" /></p>
+<p>Note that the <code>echo = FALSE</code> parameter was added to the
+code chunk to prevent printing of the R code that generated the
+plot.</p>
 </div>
 
 
